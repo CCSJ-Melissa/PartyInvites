@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using PartyInvites.Models;
+using System.Linq;
 
 namespace PartyInvites.Controllers
 {
@@ -19,12 +20,24 @@ namespace PartyInvites.Controllers
             int hour = DateTime.Now.Hour;
             ViewBag.Greeting = hour < 12 ? "Good Morning" : "Good Afternoon";
             return View("MyView");
-
         }
 
+        [HttpGet]
         public ViewResult RsvpForm()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ViewResult RsvpForm(GuestResponse guestResponse)
+        {
+            Repository.AddResponse(guestResponse);
+            return View("Thanks", guestResponse);
+        }
+
+        public ViewResult ListResponses()
+        {
+            return View(Respository.Where(r =>.WillAttend == true));
         }
     }
 }
