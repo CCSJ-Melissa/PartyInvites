@@ -11,7 +11,7 @@ namespace PartyInvites.Models
         [Required(ErrorMessage = "Please neter your name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter your email address")]
-        [RegularExpression(".+\\@+\\..+",  ErrorMessage = "Please enter a valid email adress")]
+        [RegularExpression(".+\\@.+\\..+",  ErrorMessage = "Please enter a valid email adress")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter your phone number")]
         public string Phone {get; set; }
